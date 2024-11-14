@@ -1,0 +1,10 @@
+- Prueba técnica de Express con TypeScript
+
+El objetivo de esta prueba es crear un endpoint para subir un archivo csv y recuperar sus datos para después almacenarlo en un archivo json. Después deberás usar el mismo archivo json para hacer consultas específicas usando query en lugar de params. Si crees necesario, puedes separar la lógica del código para mejorar su legibilidad. Por último, debes realizar los tests correspondiente para asegurar que el código funciona correctamente antes de hacer un commit. 
+
+1. Debes realizar las configuraciones necesarias para hacer funcionar una api con express y typescript. Es recomendable que instale un linter para poder escribir código más limpio y ordenado. 
+2. Debes crear dos enpoints: un endpoint para subir un archivo ('/upload/csv') y un endpoint para hacer consultas ('/query').
+3. El primer endpoint ('/upload') sólo debe recibir un archivo csv y almacenarlo en memoria para recuperar la información. En el caso de mandar una solicitud sin un archivo o mandar un archivo incompatible, debes lanzar un error de tipo 500. Si archivo es correcto, debes poder guardarlo en archivo de tipo json. El mismo debe ser creado dentro de un directorio con el nombre 'data'.
+4. El segundo endpoint debe poder leer el archivo json para poder hacer consultas mediante query. Los query son 'name' o 'role'. Mediante el primer query, el endpoint debe encontrar el usuario correspondiente, en el caso de que no encuentre el usuario, debes devolver un error de tipo 404. En cuanto el segundo  query, debes hacer un filtrado de todos los usuarios que tenga un rol especificado. En caso, no se haya usuarios filtrados, devolver un error de tipo 404. 
+5. Debes realizar los test necesarios para comprobar que el código funciona. Puedes usar la librería que desees, pero tienen que ser tests end-to-end.
+6. Una vez finalizado los tests, debes hacer un commit del código para subirlo al repositorio de github. 
