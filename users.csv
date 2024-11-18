@@ -1,0 +1,6 @@
+email,password,name,lastname,role
+facundo@correo.com,facundo123,facundo,castro,admin
+johndoe@correo.com,johndoe123,john,doe,normal
+janedoe@correo.com,janedoe456,jane,doe,admin
+talesde@correo.com,talesde456,tales,de,normal
+juanito@correo.com,juanito147,juanito,detales,admin
