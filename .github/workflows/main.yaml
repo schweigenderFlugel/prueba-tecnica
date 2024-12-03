@@ -1,0 +1,29 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: ['*']
+
+jobs:
+  Testing:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node Setup
+        uses: actions/setup-node@v4
+        with:
+          node: 18
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Lint
+        run: npm run lint
+      
+      - name: Testing
+        run: npm run test
