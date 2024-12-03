@@ -10,21 +10,16 @@ export default class App {
   start(): express.Express {
     const app = express();
 
-    const whiteList = ['http://localhost:5173', 'http://localhost:3000'];
-
     app.use(
       cors({
-        origin: (origin, callback) => {
-          if (!origin || whiteList.includes(origin)) callback(null, true);
-          else callback(new Error(`You're not allowed due to the CORS policy`));
-        },
+        origin: '*',
         methods: 'GET,POST,PUT,DELETE',
         credentials: true,
         allowedHeaders: [
           'Content-Type',
           'Api-Key',
-          'Access-Control-Allowed-Origin',
-          'Access-Control-Allowed-Credentials',
+          'Access-Control-Allow-Origin',
+          'Access-Control-Allow-Credentials',
         ],
       }),
     );

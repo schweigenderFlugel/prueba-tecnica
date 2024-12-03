@@ -5,7 +5,7 @@ export default class Routes {
   static get routes(): Router {
     const router = Router();
 
-    router.use('/', fileRoute);
+    router.use('/upload', fileRoute);
 
     return router;
   }

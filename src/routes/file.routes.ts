@@ -4,6 +4,6 @@ import { uploadCsv } from '../middleware/upload-file.middleware';
 
 const route = Router();
 
-route.post('/upload/csv', uploadCsv.single('file'), FileController.uploadFile);
+route.post('/csv', uploadCsv.single('file'), FileController.uploadFile);
 
 export default route;
