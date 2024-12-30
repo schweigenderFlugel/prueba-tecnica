@@ -9,5 +9,5 @@ export const options: Options = {
       description: 'API Documentation',
     },
   },
-  apis: ['./src/docs/*.yaml'],
+  apis: ['./**/docs/*.yml'],
 };

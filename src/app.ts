@@ -10,19 +10,8 @@ export default class App {
   start(): express.Express {
     const app = express();
 
-    app.use(
-      cors({
-        origin: '*',
-        methods: 'GET,POST,PUT,DELETE',
-        credentials: true,
-        allowedHeaders: [
-          'Content-Type',
-          'Api-Key',
-          'Access-Control-Allow-Origin',
-          'Access-Control-Allow-Credentials',
-        ],
-      }),
-    );
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
 
     app.use('/api/v1', Routes.routes);
 

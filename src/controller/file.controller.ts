@@ -21,4 +21,20 @@ export default class FileController {
         next(error);
       });
   }
+
+  static exportPdfFile(req: Request, res: Response, next: NextFunction) {
+    const data = req.body;
+    const pdfDoc = FileService.createPdfDocument(data);
+
+    pdfDoc
+      .then((data) => {
+        res.setHeader('Content-Type', 'application/pdf');
+        data.info.Title = 'Información';
+        data.pipe(res);
+        data.end();
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 }

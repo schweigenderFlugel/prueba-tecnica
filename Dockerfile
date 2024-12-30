@@ -1,14 +1,34 @@
-FROM node:18-alpine3.18 as base
+# DEPENDENCIES INSTALLER
+FROM node:22-alpine3.20 AS deps
 
-ENV DIR /app
-WORKDIR $DIR
+WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN HUSKY=0 npm ci
 
-COPY . .
+# APPLICATION BUILDER
+FROM node:22-alpine3.20 AS build
 
-RUN npm run build; \ npm install --only=production
+WORKDIR /app
 
-CMD ["npm", "build", "npm", "start" ]
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/package*.json ./
+COPY tsconfig.json ./
+COPY src ./src
+
+RUN npm run build 
+
+RUN npm prune --production
+
+# APPLICATION RUNNER
+FROM node:22-alpine3.20 AS runner
+
+WORKDIR /app
+
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+COPY assets ./assets
+
+CMD ["npm", "run", "start" ]
