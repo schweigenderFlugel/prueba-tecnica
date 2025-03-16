@@ -218,6 +218,6 @@ $RECYCLE.BIN/
 # Ignore csv files
 *.csv
 
-/nginx-certs
+/certs
 
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,linux,macos
