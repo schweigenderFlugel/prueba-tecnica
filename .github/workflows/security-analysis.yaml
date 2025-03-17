@@ -27,7 +27,6 @@ jobs:
         with:
           format: sarif
           output: results.sarif
-          only-rule: javascript_express_cookie_missing_http_only,javascript_express_cross_site_scripting,javascript_lang_sql_injection
           exit-code: 0
 
       - name: Fix SARIF results array
