@@ -31,6 +31,15 @@ jobs:
           path: ./src
           only-rule: javascript_express_cookie_missing_http_only,javascript_express_cross_site_scripting,javascript_lang_sql_injection
 
+      - name: Fix SARIF results array
+        run: |
+          if [ -f results.sarif ]; then
+            jq 'if .runs[0].results == null then .runs[0].results = [] else . end' results.sarif > tmp.sarif && mv tmp.sarif results.sarif
+          else
+            echo "El archivo results.sarif no existe"
+            exit 1
+          fi
+
       - name: Upload SARIF file
         if: always()
         uses: github/codeql-action/upload-sarif@3f0edd48f812cd4456637edc0d7827a0a89d87b9
