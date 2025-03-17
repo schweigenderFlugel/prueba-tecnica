@@ -1,21 +1,21 @@
 name: Main
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches: ['*']
+    branches: 
+      - dev
 
 jobs:
   Testing:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@e3d2460bbb42d7710191569f88069044cfb9d8cf
+        with:
+          fetch-depth: 0
 
       - name: Node Setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@574f09a9fa0c028c06ee94033784a2f5488c1735
         with:
           node: 18
       
@@ -24,6 +24,17 @@ jobs:
       
       - name: Lint
         run: npm run lint
-      
+
       - name: Testing
-        run: npm run test
+        run: npm run test:e2e
+      
+      - name: Coverage tests
+        run: npm run test:cov
+        env:
+          DATABASE_URL: 'postgres://iupi-fintech-test:1cf4eb8f04a84637@localhost:5432/iupi-fintech-test-db'
+        working-directory: ./server
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
