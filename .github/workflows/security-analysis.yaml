@@ -23,11 +23,12 @@ jobs:
           fetch-depth: 0
       
       - name: Bearer
-        uses: bearer/bearer-action@828eeb928ce2f4a7ca5ed57fb8b59508cb8c79bc
+        uses: bearer/bearer-action@b30caf232b992ecf294888df81e7ecc1451f6f0a
         id: report
         with:
           format: sarif
           output: results.sarif
+          path: ./src
           exit-code: 0
 
       - name: Upload SARIF file
