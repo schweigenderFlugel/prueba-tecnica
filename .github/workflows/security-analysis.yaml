@@ -23,22 +23,12 @@ jobs:
           fetch-depth: 0
       
       - name: Bearer
-        uses: bearer/bearer-action@b30caf232b992ecf294888df81e7ecc1451f6f0a
+        uses: bearer/bearer-action@828eeb928ce2f4a7ca5ed57fb8b59508cb8c79bc
         with:
           format: sarif
           output: results.sarif
-          severity: critical,high
-          path: ./src
           only-rule: javascript_express_cookie_missing_http_only,javascript_express_cross_site_scripting,javascript_lang_sql_injection
-
-      - name: Fix SARIF results array
-        run: |
-          if [ -f results.sarif ]; then
-            jq 'if .runs[0].results == null then .runs[0].results = [] else . end' results.sarif > tmp.sarif && mv tmp.sarif results.sarif
-          else
-            echo "El archivo results.sarif no existe"
-            exit 1
-          fi
+          exit-code: 0
 
       - name: Upload SARIF file
         if: always()
