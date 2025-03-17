@@ -7,7 +7,7 @@
     "start": "node ./dist/main.js",
     "dev": "tsnd --respawn --clear ./src/main.ts",
     "lint": "eslint . && prettier --check src/*.ts",
-    "test": "jest --detectOpenHandles --forceExit",
+    "test:e2e": "jest --detectOpenHandles --forceExit",
     "test:cov": "jest --coverage",
     "certs:autogenerate": "sh ./scripts/certs-generate.sh",
     "prepare": "husky"
