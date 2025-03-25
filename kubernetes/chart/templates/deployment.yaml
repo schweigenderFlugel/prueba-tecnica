@@ -1,23 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: csv-to-pdf-service
+  name: {{ .Values.appName }}
   namespace: development
   labels:
-    app: csv-to-pdf-service
+    app: {{ .Values.appName }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: csv-to-pdf-service
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels: 
-        app: csv-to-pdf-service
+        app: {{ .Values.appName }}
     spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecretName }}
       containers:
-      - name: csv-to-pdf-container
-        image: schweigenderflugel/csv-to-pdf:0.22
+      - name: {{ .Values.appName }} # {{ randAlphaNum 5 | lower }}
+        image: {{ .Values.imageName }}
         resources:
           requests:
             memory: "64Mi"

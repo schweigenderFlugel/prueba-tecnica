@@ -1,0 +1,1 @@
+[![Coverage Status](https://coveralls.io/repos/github/schweigenderFlugel/prueba-tecnica/badge.svg?branch=solutions)](https://coveralls.io/github/schweigenderFlugel/prueba-tecnica?branch=solutions)
