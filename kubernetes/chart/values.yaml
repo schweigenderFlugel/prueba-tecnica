@@ -1,0 +1,6 @@
+appName: csv-to-pdf-website
+imageName: schweigenderflugel/csv-to-pdf:0.22
+imagePullSecretName: csv-to-pdf-svc # kubectl create secret docker-registry --help 
+replicas: 3
+serviceName: csv-to-pdf-svc
+sourcePoprt: 80

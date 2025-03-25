@@ -1,0 +1,37 @@
+name: Main
+
+on:
+  pull_request:
+    branches: 
+      - dev
+
+jobs:
+  Testing:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@e3d2460bbb42d7710191569f88069044cfb9d8cf
+        with:
+          fetch-depth: 0
+
+      - name: Node Setup
+        uses: actions/setup-node@574f09a9fa0c028c06ee94033784a2f5488c1735
+        with:
+          node: 18
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Lint
+        run: npm run lint
+
+      - name: Testing
+        run: npm run test:e2e
+      
+      - name: Coverage tests
+        run: npm run test:cov
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

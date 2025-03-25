@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+  namespace: development
+  labels:
+    app: busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox
+  templates:
+    metadata:
+      labels:
+        app: busybox
+  spec:
+    containers:
+    - name: busybox-container
+      image: busybox:latest
+      command: ["/bin//sh", "-c", "--"]
