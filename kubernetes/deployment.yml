@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csv-to-pdf-service
+  namespace: development
+  labels:
+    app: csv-to-pdf-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: csv-to-pdf-service
+  template:
+    metadata:
+      labels: 
+        app: csv-to-pdf-service
+    spec:
+      containers:
+      - name: csv-to-pdf-container
+        image: schweigenderflugel/csv-to-pdf:0.22
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+          limit:
+            memory: "256Mi"
+            cpu: "500m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+        ports:
+        - containerPorts: 3000
+        env: 
+        - name: POD_NAME
+          valueFrom:
+            fieldRef: 
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIp

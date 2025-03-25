@@ -1,0 +1,21 @@
+apiVersion: networking.k8.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.appName }}
+  annotations: 
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing
+
+spec:
+  rules:
+  - host: {{ .Values.appName }} # AWS wiil create a DNS record for you, so remenber getting rid of this line
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Values.serviceName }}
+            port: 
+              number: {{ .Values.sourcePort }}
+        path: /
+        pathType: Prefix

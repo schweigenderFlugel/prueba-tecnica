@@ -1,0 +1,24 @@
+paths:
+  /api/v1/upload/csv:
+    post:
+      summary: Upload a csv file and receive the information in JSON format
+      consumes:
+        - multipart/form-data
+      tags:
+        - File
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Recieve the data in JSON format
+        "400":
+          description: No file uploaded
+        "415":
+          description: The file format is not accepted

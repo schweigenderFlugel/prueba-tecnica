@@ -1,0 +1,47 @@
+{
+  "name": "prueba-tecnica",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "start": "node ./dist/main.js",
+    "dev": "tsnd --respawn --clear ./src/main.ts",
+    "lint": "eslint . && prettier --check src/*.ts",
+    "test:e2e": "jest --detectOpenHandles --forceExit",
+    "test:cov": "jest --coverage",
+    "certs:autogenerate": "sh ./scripts/certs-generate.sh",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/multer": "^1.4.12",
+    "@types/pdfmake": "^0.2.10",
+    "@types/supertest": "^6.0.2",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.7",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.7",
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node-dev": "^2.0.0",
+    "ts-standard": "^12.0.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv": "^6.3.10",
+    "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1",
+    "pdfmake": "^0.2.12",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

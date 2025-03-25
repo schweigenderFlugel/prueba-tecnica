@@ -1,0 +1,30 @@
+name: csv-pdf 
+
+services:
+  app:
+    image: schweigenderflugel/csv-to-pdf:0.22
+    restart: on-failure
+    deploy:
+      replicas: 3
+    networks:
+      - app_network
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.27-alpine3.20
+    restart: unless-stopped
+    depends_on:
+      - app
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/ssl
+    ports:
+      - "8080:80"
+      - "443:443"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+    name: csv-pdf_default
