@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import HttpError from '../utils/http-error.utils';
+import HttpError from '../utils/pdf-printer/http-error.utils';
 
 export default function errorHandler(
   error: HttpError,

@@ -4,7 +4,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
 import Routes from './routes';
 import errorHandler from './middleware/error-handler.middleware';
-import { options } from './utils/swagger.utils';
+import { options } from './utils/pdf-printer/swagger.utils';
 
 export default class App {
   start(): express.Express {

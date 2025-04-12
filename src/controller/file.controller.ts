@@ -37,4 +37,20 @@ export default class FileController {
         next(error);
       });
   }
+
+  static transcribeVideo(req: Request, res: Response, next: NextFunction) {
+    const file = req.file;
+    const transcription = FileService.trancribeVideo(file);
+    transcription
+      .then(async (stream) => {
+        if (!stream) return;
+        res.setHeader('Content-Type', 'application/json');
+        for await (const chunk of stream) {
+          res.write(JSON.stringify(chunk));
+        }
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 }

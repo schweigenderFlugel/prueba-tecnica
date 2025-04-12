@@ -1,5 +1,5 @@
 import multer, { Options, memoryStorage } from 'multer';
-import HttpError from '../utils/http-error.utils';
+import HttpError from '../utils/pdf-printer/http-error.utils';
 
 const options = (formats: string[], fileSize?: number | undefined): Options => {
   return {
@@ -13,3 +13,4 @@ const options = (formats: string[], fileSize?: number | undefined): Options => {
 };
 
 export const uploadCsv = multer(options(['text/csv']));
+export const uploadVideo = multer(options(['video/mp4']));
