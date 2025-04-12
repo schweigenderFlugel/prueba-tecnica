@@ -10,6 +10,8 @@ export default class App {
   start(): express.Express {
     const app = express();
 
+    app.use(cors({ origin: '*' }));
+
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
 
